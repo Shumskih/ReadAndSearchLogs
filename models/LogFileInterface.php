@@ -1,7 +1,7 @@
 <?php
 
 
-interface LogFile
+interface LogFileInterface
 {
     function searchLogs($searchString = NULL);
 

@@ -26,7 +26,7 @@
             <?php endif; ?>
         </div>
         <div class="form-group d-flex w-50">
-            <input type="text" name="searchString" class="form-control" id="search" placeholder="404"
+            <input type="text" name="searchString" class="form-control" id="search" placeholder="Search string here"
                    value="<?php if (isset($_GET['searchString'])) echo $_GET['searchString']; ?>">
             <button type="submit" class="btn btn-outline-info ml-1">Send</button>
         </div>

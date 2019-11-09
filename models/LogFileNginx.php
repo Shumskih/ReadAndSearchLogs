@@ -1,9 +1,9 @@
 <?php
 require_once ROOT . '/config/Config.php';
-require_once ROOT . '/models/LogFile.php';
+require_once ROOT . '/models/LogFileInterface.php';
 require_once ROOT . '/models/SearchNginx.php';
 
-class LogFileNginx implements LogFile
+class LogFileNginx implements LogFileInterface
 {
     private $listOfCheckedLogs = [];
 
