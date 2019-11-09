@@ -3,11 +3,11 @@
 
 interface LogFile
 {
-    public function parseLogs($searchString = NULL);
+    function searchLogs($searchString = NULL);
 
-    public function getListOfAllLogs();
+    function getListOfAllLogs();
 
-    public function setListOfCheckedLogs($listOfCheckedLogs);
+    function setListOfCheckedLogs($listOfCheckedLogs);
 
-    public function getListOfCheckedLogs($checkedLogs = NULL);
+    function getListOfCheckedLogs($checkedLogs = NULL);
 }

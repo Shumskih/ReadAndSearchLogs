@@ -20,11 +20,11 @@ class IndexPageController
             $_GET['searchString'] = trim($_GET['searchString']);
 
             if ($_GET['searchString'] != NULL) {
-                $this->logFile->parseLogs($_GET['searchString']);
+                $this->logFile->searchLogs($_GET['searchString']);
             }
         }
         if (!isset($_GET['searchString']) || isset($_GET['searchString']) && $_GET['searchString'] == NULL) {
-            $this->logFile->parseLogs();
+            $this->logFile->searchLogs();
         }
         $listOfAllLogs = $this->logFile->getLogFileNames();
 

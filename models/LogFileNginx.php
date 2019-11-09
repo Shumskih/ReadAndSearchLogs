@@ -9,7 +9,7 @@ class LogFileNginx implements LogFile
 
     private $logFileNames = [];
 
-    public function parseLogs($searchString = NULL)
+    public function searchLogs($searchString = NULL)
     {
         $listOfLogs = NULL;
 
@@ -20,26 +20,26 @@ class LogFileNginx implements LogFile
         }
 
         if ($searchString == NULL) {
-            SearchNginx::parseAll($listOfLogs);
+            SearchNginx::searchAll($listOfLogs);
         }
         if ($searchString != NULL) {
             if (!strpos($searchString, '&&') && !strpos($searchString, '||') && $searchString) {
-                SearchNginx::parseSingle($searchString, $listOfLogs);
+                SearchNginx::searchSingle($searchString, $listOfLogs);
             }
             if (strpos($searchString, '&&', 0) && !strpos($searchString, '||', 0)) {
-                SearchNginx::parseDouble($searchString, $listOfLogs);
+                SearchNginx::searchDouble($searchString, $listOfLogs);
             }
             if (strpos($searchString, '||')) {
                 $searchString = explode('||', $searchString);
                 if (strpos($searchString[0], '&&', 0)) {
-                    SearchNginx::parseDouble($searchString[0], $listOfLogs);
+                    SearchNginx::searchDouble($searchString[0], $listOfLogs);
                 } else {
-                    SearchNginx::parseSingle($searchString[0], $listOfLogs);
+                    SearchNginx::searchSingle($searchString[0], $listOfLogs);
                 }
                 if (count($_SESSION) == 0 && strpos($searchString[1], '&&', 0)) {
-                    SearchNginx::parseDouble($searchString[1], $listOfLogs);
+                    SearchNginx::searchDouble($searchString[1], $listOfLogs);
                 } else if (count($_SESSION) == 0 && !strpos($searchString[1], '&&', 0)) {
-                    SearchNginx::parseSingle($searchString[1], $listOfLogs);
+                    SearchNginx::searchSingle($searchString[1], $listOfLogs);
                 }
             }
         }
@@ -49,8 +49,8 @@ class LogFileNginx implements LogFile
     {
         $listOfAllLogs = [];
 
-        if (is_dir(Config::PATH_TO_LOGS_FOLDER)) {
-            $files = glob(Config::PATH_TO_LOGS_FOLDER . DIRECTORY_SEPARATOR . '*.log');
+        if (is_dir(Config::PATH_TO_NGINX_LOGS_FOLDER)) {
+            $files = glob(Config::PATH_TO_NGINX_LOGS_FOLDER . DIRECTORY_SEPARATOR . '*.log');
             foreach ($files as $file) {
                 array_push($listOfAllLogs, $file);
             }
@@ -80,8 +80,8 @@ class LogFileNginx implements LogFile
     {
         $listOfLogs = [];
 
-        if (is_dir(Config::PATH_TO_LOGS_FOLDER)) {
-            $files = glob(Config::PATH_TO_LOGS_FOLDER . DIRECTORY_SEPARATOR . '*.log');
+        if (is_dir(Config::PATH_TO_NGINX_LOGS_FOLDER)) {
+            $files = glob(Config::PATH_TO_NGINX_LOGS_FOLDER . DIRECTORY_SEPARATOR . '*.log');
             foreach ($files as $file) {
                 if ($checkedLogs != NULL) {
                     $fileName = explode(DIRECTORY_SEPARATOR, $file);

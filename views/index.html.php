@@ -56,11 +56,12 @@
                     <?php endforeach; ?>
                 <?php endif; ?>
             <?php endforeach; ?>
-            <p>
-            <strong>
-        <?php else: echo SearchNginx::notFound(); ?>
-            </strong>
-            </p>
+        <?php else: ?>
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col" class="text-center"><?php echo SearchNginx::notFound(); ?></th>
+            </tr>
+            </thead>
         <?php endif; ?>
     </table>
 </main>

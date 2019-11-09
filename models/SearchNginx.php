@@ -3,7 +3,7 @@ require_once ROOT . '/models/Search.php';
 
 class SearchNginx extends Search
 {
-    public static function parseSingle($searchString, $listOfLogs)
+    public static function searchSingle($searchString, $listOfLogs)
     {
         $searchString = trim($searchString);
         foreach ($listOfLogs as $file) {
@@ -31,7 +31,7 @@ class SearchNginx extends Search
         }
     }
 
-    public static function parseDouble($searchString, $listOfLogs)
+    public static function searchDouble($searchString, $listOfLogs)
     {
         $searchString = explode('&&', $searchString);
         $searchString[0] = trim($searchString[0]);
@@ -54,7 +54,7 @@ class SearchNginx extends Search
         }
     }
 
-    public static function parseAll($listOfLogs)
+    public static function searchAll($listOfLogs)
     {
         foreach ($listOfLogs as $file) {
             $arr = file($file);
